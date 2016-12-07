@@ -1,3 +1,5 @@
+package NTP;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -6,6 +8,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.Random;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXPasswordField;
@@ -68,93 +72,133 @@ public class JESUS_Client extends Application {
 	private VBox pane, pane2;
 	private static final int PORT = 1945;
 	private Text publicText, publicText2;
-	
-	public String countB (int a){
+
+	// public String countB (int a){
+	// String b = null;
+	// if(a==0 || a==6 || a==12){
+	// b="-fx-background-color: #d0d0d0;\n" + "-fx-background-insets:
+	// 0,1,2,3;\n" + "-fx-border-radius: 20px;\n"
+	// + "-fx-padding: 15 30 15 30;\n" + "-fx-text-fill: black;\n" +
+	// "-fx-font-size: 18px;\n" +"-fx-border-color:WHITE;\n"
+	// + "-fx-font-weight: bold;\n" + "-fx-background-radius:50px;\n" +
+	// "-fx-pref-height:50px;\n";
+	// }
+	// if(a==1 || a==7 || a==13){
+	// b="-fx-background-color: yellow;\n" + "-fx-background-insets: 0,1,2,3;\n"
+	// + "-fx-border-radius: 20px;\n"
+	// + "-fx-padding: 15 30 15 30;\n" + "-fx-text-fill: black;\n" +
+	// "-fx-font-size: 18px;\n"+"-fx-border-color:WHITE;\n"
+	// + "-fx-font-weight: bold;\n" + "-fx-background-radius:50px;\n" +
+	// "-fx-pref-height:50px;\n";
+	// }
+	// if(a==2 || a==8 || a==14){
+	// b="-fx-background-color: pink;\n" + "-fx-background-insets: 0,1,2,3;\n" +
+	// "-fx-border-radius: 20px;\n"
+	// + "-fx-padding: 15 30 15 30;\n" + "-fx-text-fill: black;\n" +
+	// "-fx-font-size: 18px;\n"+"-fx-border-color:WHITE;\n"
+	// + "-fx-font-weight: bold;\n" + "-fx-background-radius:50px;\n" +
+	// "-fx-pref-height:50px;\n";
+	// }
+	// if(a==3 || a==9 || a==15){
+	// b="-fx-background-color: #3ae7eb;\n" + "-fx-background-insets:
+	// 0,1,2,3;\n" + "-fx-border-radius: 20px\n"
+	// + "-fx-padding: 15 30 15 30;\n" + "-fx-text-fill: black;\n" +
+	// "-fx-font-size: 18px;\n"+"-fx-border-color:WHITE;\n"
+	// + "-fx-font-weight: bold;\n" + "-fx-background-radius:50px;\n" +
+	// "-fx-pref-height:50px;\n";
+	// }
+	// if(a==4 || a==10 || a==16){
+	// b="-fx-background-color: #dc4f3e;\n" + "-fx-background-insets:
+	// 0,1,2,3;\n" + "-fx-border-radius: 20px;\n"
+	// + "-fx-padding: 15 30 15 30;\n" + "-fx-text-fill: black;\n" +
+	// "-fx-font-size: 18px;\n"+"-fx-border-color:WHITE;\n"
+	// + "-fx-font-weight: bold;\n" + "-fx-background-radius:50px;\n" +
+	// "-fx-pref-height:50px;\n";
+	// }
+	// if(a==5 || a==11 || a==17){
+	// b="-fx-background-color: #0adbe1;\n" + "-fx-background-insets:
+	// 0,1,2,3;\n" + "-fx-border-radius: 20px;\n"
+	// + "-fx-padding: 15 30 15 30;\n" + "-fx-text-fill: black;\n" +
+	// "-fx-font-size: 18px;\n"+"-fx-border-color:WHITE;\n"
+	// + "-fx-font-weight: bold;\n" + "-fx-background-radius:50px;\n" +
+	// "-fx-pref-height:50px;\n";
+	// }
+	// return b;
+	// }
+	public String countB(int a) {
 		String b = null;
-		if(a==0 || a==6 || a==12){
-			b="-fx-background-color: #d0d0d0;\n" + "-fx-background-insets: 0,1,2,3;\n" + "-fx-border-radius: 20px;\n" 
-					+ "-fx-padding: 15 30 15 30;\n" + "-fx-text-fill: black;\n" + "-fx-font-size: 18px;\n" +"-fx-border-color:WHITE;\n"
-					+ "-fx-font-weight: bold;\n" + "-fx-background-radius:50px;\n" + "-fx-pref-height:50px;\n";
+		/* Base ins : #d0d0d0, If ins : yellow, Loop ins : pink */
+		if (a == 1) {
+			b = "-fx-background-color: #d0d0d0;\n"+ "-fx-background-insets: 0,1,2,3;\n" + "-fx-border-radius: 20px;\n"
+					+ "-fx-padding: 15 30 15 30;\n" + "-fx-text-fill: black;\n" + "-fx-font-size: 18px;\n"
+					+ "-fx-border-color:WHITE;\n" + "-fx-font-weight: bold;\n" + "-fx-background-radius:50px;\n"
+					+ "-fx-pref-height:50px;\n";
+		} else if (a == 2) {
+			b = "-fx-background-color: yellow;\n" + "-fx-background-insets: 0,1,2,3;\n" + "-fx-border-radius: 20px;\n"
+					+ "-fx-padding: 15 30 15 30;\n" + "-fx-text-fill: black;\n" + "-fx-font-size: 18px;\n"
+					+ "-fx-border-color:WHITE;\n" + "-fx-font-weight: bold;\n" + "-fx-background-radius:50px;\n"
+					+ "-fx-pref-height:50px;\n";
+		} else if (a == 3) {
+			b = "-fx-background-color: pink;\n" + "-fx-background-insets: 0,1,2,3;\n" + "-fx-border-radius: 20px;\n"
+					+ "-fx-padding: 15 30 15 30;\n" + "-fx-text-fill: black;\n" + "-fx-font-size: 18px;\n"
+					+ "-fx-border-color:WHITE;\n" + "-fx-font-weight: bold;\n" + "-fx-background-radius:50px;\n"
+					+ "-fx-pref-height:50px;\n";
 		}
-		if(a==1 || a==7 || a==13){
-			b="-fx-background-color: yellow;\n" + "-fx-background-insets: 0,1,2,3;\n" + "-fx-border-radius: 20px;\n"
-					+ "-fx-padding: 15 30 15 30;\n" + "-fx-text-fill: black;\n" + "-fx-font-size: 18px;\n"+"-fx-border-color:WHITE;\n"
-					+ "-fx-font-weight: bold;\n" + "-fx-background-radius:50px;\n" + "-fx-pref-height:50px;\n";
+
+		return b;
+	}
+
+	public String selectImage(int a) {
+		String b = null;
+		if (a == 1) {
+			b = "/NTP/signup.png";
 		}
-		if(a==2 || a==8 || a==14){
-			b="-fx-background-color: pink;\n" + "-fx-background-insets: 0,1,2,3;\n" + "-fx-border-radius: 20px;\n"
-					+ "-fx-padding: 15 30 15 30;\n" + "-fx-text-fill: black;\n" + "-fx-font-size: 18px;\n"+"-fx-border-color:WHITE;\n"
-					+ "-fx-font-weight: bold;\n" + "-fx-background-radius:50px;\n" + "-fx-pref-height:50px;\n";
+		if (a == 2) {
+			b = "/NTP/autodoor.png";
 		}
-		if(a==3 || a==9 || a==15){
-			b="-fx-background-color: #3ae7eb;\n" + "-fx-background-insets: 0,1,2,3;\n" + "-fx-border-radius: 20px\n"
-					+ "-fx-padding: 15 30 15 30;\n" + "-fx-text-fill: black;\n" + "-fx-font-size: 18px;\n"+"-fx-border-color:WHITE;\n"
-					+ "-fx-font-weight: bold;\n" + "-fx-background-radius:50px;\n" + "-fx-pref-height:50px;\n";
+		if (a == 3) {
+			b = "/NTP/lock.png";
 		}
-		if(a==4 || a==10 || a==16){
-			b="-fx-background-color: #dc4f3e;\n" + "-fx-background-insets: 0,1,2,3;\n" + "-fx-border-radius: 20px;\n"
-					+ "-fx-padding: 15 30 15 30;\n" + "-fx-text-fill: black;\n" + "-fx-font-size: 18px;\n"+"-fx-border-color:WHITE;\n"
-					+ "-fx-font-weight: bold;\n" + "-fx-background-radius:50px;\n" + "-fx-pref-height:50px;\n";
+		if (a == 4) {
+			b = "/NTP/lock2.png";
 		}
-		if(a==5 || a==11 || a==17){
-			b="-fx-background-color: #0adbe1;\n" + "-fx-background-insets: 0,1,2,3;\n" + "-fx-border-radius: 20px;\n"
-					+ "-fx-padding: 15 30 15 30;\n" + "-fx-text-fill: black;\n" + "-fx-font-size: 18px;\n"+"-fx-border-color:WHITE;\n"
-					+ "-fx-font-weight: bold;\n" + "-fx-background-radius:50px;\n" + "-fx-pref-height:50px;\n";
+		if (a == 5) {
+			b = "/NTP/lock2.png";
+		}
+		if (a == 6) {
+			b = "/NTP/lock2.png";
 		}
 		return b;
 	}
-	
-	public String selectImage (int a){
-		 String b = null;
-		if (a == 1){
-			b = "/resources/signup.png";
+
+	public String selectIdImg(int a) {
+		String b = null;
+		if (a == 1) {
+			b = "/NTP/id2.png";
 		}
-		if (a == 2){
-			b = "/resources/autodoor.png";
+
+		if (a == 2) {
+			b = "/NTP/id2.png";
 		}
-		if (a == 3){
-			b = "/resources/lock.png";
-		}			
-		if (a == 4){
-			b = "/resources/lock2.png";
+
+		if (a == 3) {
+			b = "/NTP/id.png";
 		}
-		if (a == 5){
-			b = "/resources/lock2.png";
-		}			
-		if (a == 6){
-			b = "/resources/lock2.png";
+
+		if (a == 4) {
+			b = "/NTP/id.png";
 		}
-			return b;
-	}
-	
-	public String selectIdImg (int a){
-		String b=null;
-		if (a == 1){
-			b = "/resources/id2.png";
+
+		if (a == 5) {
+			b = "/NTP/id3.png";
 		}
-		
-		if (a == 2){
-			b = "/resources/id2.png";
-		}
-		
-		if (a == 3){
-			b = "/resources/id.png";
-		}
-			
-		if (a == 4){
-			b = "/resources/id.png";
-		}
-		
-		if (a == 5){
-			b = "/resources/id3.png";
-		}
-			
-		if (a == 6){
-			b = "/resources/id3.png";
+
+		if (a == 6) {
+			b = "/NTP/id3.png";
 		}
 		return b;
 	}
-	
+
 	private void run(String[] args) throws IOException {
 
 		// Socket socket = new Socket("127.0.0.1", 1945);
@@ -167,8 +211,6 @@ public class JESUS_Client extends Application {
 		launch(args);
 		// 127.0.0.1
 	}
-	
-	
 
 	public static void main(String[] args) throws Exception {
 		JESUS_Client client = new JESUS_Client();
@@ -180,10 +222,16 @@ public class JESUS_Client extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
+		  Random random = new Random();
+          int red = random.nextInt(255);
+          int green = random.nextInt(255);
+          int blue = random.nextInt(255); 
+
+          
 		HashMap<String, Integer> q = new HashMap<String, Integer>();
 		HashMap<String, Integer> inst = new HashMap<String, Integer>();
 		ArrayList<Integer> submitList = new ArrayList<Integer>();
-		
+
 		window = primaryStage;
 
 		GridPane gp = new GridPane();
@@ -195,16 +243,17 @@ public class JESUS_Client extends Application {
 		VBox vbox4 = new VBox();
 		VBox vbox3 = new VBox();
 		Button submit = new Button();
+		
 		String question;
 		int[] i_No;
 		window.setTitle("JESUS");
-		String buttonColor[] = { "-fx-background-color: blue;", "-fx-background-color: red;", "-fx-background-color: yellow;", "-fx-background-color: white;",
-								 "-fx-background-color: pink;"};
+		String buttonColor[] = { "-fx-background-color: blue;", "-fx-background-color: red;",
+				"-fx-background-color: yellow;", "-fx-background-color: white;", "-fx-background-color: pink;" };
 
 		String buttonLayout = "-fx-background-insets: 0,1,2,3;\n" + "-fx-background-radius: 3,2,2,2;\n"
 				+ "-fx-padding: 15 30 15 30;\n" + "-fx-text-fill: white;\n" + "-fx-font-size: 18px;\n"
 				+ "-fx-font-weight: bold;\n";
-		
+
 		Socket socket = new Socket("127.0.0.1", PORT);
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		out = new PrintWriter(socket.getOutputStream(), true);
@@ -253,222 +302,238 @@ public class JESUS_Client extends Application {
 		loginButton.setStyle("-fx-text-fill: green;\n");
 		loginButton.setOnMouseClicked((e) -> {
 			if (IDField.getText().isEmpty() || passwordField.getText().isEmpty()) {
-	            System.out.println("입력 값이 없음");
-			} else{			
-			out.println("LOGIN " + IDField.getText().toString() + " " + passwordField.getText().toString());
-			userID = IDField.getText().toString();
-			String inMsg = null;
-			try {
-				inMsg = in.readLine();
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-			state = Integer.parseInt(inMsg);
-			if (state == -1) {
-				window.setScene(levelPage);
-			} else if (state > -1) {
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle(" JESUS ");
-				alert.setHeaderText(null);
-				alert.setContentText("Do you like to continue last game?");
+				System.out.println("입력 값이 없음");
+			} else {
+				out.println("LOGIN " + IDField.getText().toString() + " " + passwordField.getText().toString());
+				userID = IDField.getText().toString();
+				String inMsg = null;
+				try {
+					inMsg = in.readLine();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				state = Integer.parseInt(inMsg);
+				if (state == -1) {
+					window.setScene(levelPage);
+				} else if (state > -1) {
+					Alert alert = new Alert(AlertType.CONFIRMATION);
+					alert.setTitle(" JESUS ");
+					alert.setHeaderText(null);
+					alert.setContentText("Do you like to continue last game?");
 
-				ButtonType buttonTypeOne = new ButtonType("Yes");
-				ButtonType buttonTypeTwo = new ButtonType("No");
+					ButtonType buttonTypeOne = new ButtonType("Yes");
+					ButtonType buttonTypeTwo = new ButtonType("No");
 
-				alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+					alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
 
-				Optional<ButtonType> result = alert.showAndWait();
-				if (result.get() == buttonTypeOne) {
-					ArrayList<String> instBox = new ArrayList<String>();
-					submitList.add(state);
-					Image image = new Image(selectImage(state));
-					ImageView iv1 = new ImageView();
-					iv1.setImage(image);
-					iv1.setFitHeight(100);
-					iv1.setFitWidth(100);
-					vbox4.getChildren().add(iv1);
-					String stMsg = null;
-					out.println("LEVELCHOICE " + state);
-							
-					Image id = new Image(selectIdImg(state));
-					ImageView idv = new ImageView();
-					idv.setImage(id);
-					idv.setFitHeight(80);
-					idv.setFitWidth(100);
-					vbox1_1.getChildren().add(idv);
-					
-					Label text1 = new Label("ID: " + userID);
-					Label text2 = new Label("Q Number: " + state);
-					Text text0 = new Text();
-					publicText = text0;
-					publicText2 = text0;
-					text0.setStyle("-fx-font-size: 0.1px;\n");	
-					text1.setTextFill(Color.BLACK);
-					text1.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 30));
-					text2.setTextFill(Color.BLACK);
-					text2.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 30));
-					vbox1_2.getChildren().addAll(text0, text1, text2);
-					
-					try {
-						stMsg = in.readLine();
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-					String que = stMsg.substring(1, stMsg.length());
-					
-					Label task = new Label("QUESTION: "+que);
-					task.setTextFill(Color.BLACK);
-					task.setFont(Font.font("Arial", FontWeight.BOLD, 30));
-					vbox4.getChildren().add(task);
-					out.println("QCHOICE " + state);
-					// System.out.println(lev1.getText());
-					String iMsg = null;
-					try {
-						iMsg = in.readLine();
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-					while (!iMsg.equals("END")) {
-						String iContent, iNO;
-						iNO = iMsg.substring(0, iMsg.indexOf(" "));
-						iContent = iMsg.substring(iMsg.indexOf(" ") + 1);
-						inst.put(iContent, Integer.parseInt(iNO));
-						instBox.add(iContent);
+					Optional<ButtonType> result = alert.showAndWait();
+					if (result.get() == buttonTypeOne) {
+						ArrayList<String> instBox = new ArrayList<String>();
+						submitList.add(state);
+						Image image = new Image(selectImage(state));
+						ImageView iv1 = new ImageView();
+						iv1.setImage(image);
+						iv1.setFitHeight(100);
+						iv1.setFitWidth(100);
+						vbox4.getChildren().add(iv1);
+						String stMsg = null;
+						try {
+							in.reset();
+						} catch (Exception e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						}
+						out.println("LEVELCHOICE " + state);
+
+						Image id = new Image(selectIdImg(state));
+						ImageView idv = new ImageView();
+						idv.setImage(id);
+						idv.setFitHeight(80);
+						idv.setFitWidth(100);
+						vbox1_1.getChildren().add(idv);
+
+						Label text1 = new Label("ID: " + userID);
+						Label text2 = new Label("Q Number: " + state);
+						Text text0 = new Text();
+						publicText = text0;
+						publicText2 = text0;
+						text0.setStyle("-fx-font-size: 0.1px;\n");
+						text1.setTextFill(Color.BLACK);
+						text1.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 30));
+						text2.setTextFill(Color.BLACK);
+						text2.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 30));
+						vbox1_2.getChildren().addAll(text0, text1, text2);
+
+						try {
+							stMsg = in.readLine();
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+						String que = stMsg.substring(1, stMsg.length());
+
+						Label task = new Label("QUESTION: " + que);
+						task.setTextFill(Color.BLACK);
+						task.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+						vbox4.getChildren().add(task);
+						try {
+							in.reset();
+						} catch (Exception e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						}
+						out.println("QCHOICE " + state);
+						// System.out.println(lev1.getText());
+						String iMsg = null;
 						try {
 							iMsg = in.readLine();
 						} catch (Exception e1) {
 							e1.printStackTrace();
 						}
-					}
-					count = 0;
-					for (String l : inst.keySet()) {
-						System.out.println(inst.get(l) + " " + l);
-						count++;
-						instruction = l;
-					}
-					System.out.println(inst.size());
-					window.setScene(playPage);
-					window.setFullScreen(true);
-					publicText.setText(inst.size() + "");
-					publicText2.setText(userID);
-					
-					ScrollPane sp = new ScrollPane();
-					VBox box = new VBox();
-					box.setPrefHeight(300);
-			        box.setPrefWidth(800); 
-			        box.setStyle("-fx-background-color: #FFA500;\n" + "-fx-background-insets: 0,1,2,3;\n"
-							+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: white;\n" + "-fx-border-insets: 5;\n"
-					        + "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
-					
-
-					for (int i = 0; i < instBox.size(); ++i) {
-						String current = instBox.get(i);
-						Button ins = new Button(String.valueOf(current));
-						
-						ins.setStyle(countB(i));
-						box.getChildren().add(ins);
-						ins.setOnAction(d -> {
-							String Msg = null;
-
-							submitList.add(inst.get(ins.getText()));
-							out.println("FEEDBACK " + inst.get(ins.getText()));
+						while (!iMsg.equals("END")) {
+							String iContent, iNO;
+							iNO = iMsg.substring(0, iMsg.indexOf(" "));
+							iContent = iMsg.substring(iMsg.indexOf(" ") + 1);
+							inst.put(iContent, Integer.parseInt(iNO));
+							instBox.add(iContent);
 							try {
-								Msg = in.readLine();
+								iMsg = in.readLine();
 							} catch (Exception e1) {
 								e1.printStackTrace();
 							}
-							while (!Msg.equals("END")) {
-								if (Msg.contains("FEEDBACK")) {
-									String msg = Msg.substring(Msg.indexOf(" ") + 1);
-									Label neg = new Label(msg);
-									String family1 = "Helvetica";
-									double size1 = 25;
-									neg.setTextFill(Color.GREEN);
-									neg.setFont(Font.font(family1, FontWeight.BOLD, size1));
-									vbox3.getChildren().add(neg);
-									vbox3.setStyle("-fx-background-color: red;" + "-fx-background-insets: 0,1,2,3;\n"
-											+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: orange;\n" + "-fx-border-insets: 5;\n"
-									        + "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
-								} else if (Msg.contains("PRAISE")) {
-									String msg = Msg.substring(Msg.indexOf(" ") + 1);
-									System.out.println(msg);
-									Label pos = new Label(msg);
-									String family2 = "Helvetica";
-									double size2 = 25;
-									pos.setTextFill(Color.YELLOW);
-									pos.setFont(Font.font(family2, FontWeight.BOLD, size2));
-									vbox3.getChildren().add(pos);
-									vbox3.setStyle("-fx-background-color: blue;" + "-fx-background-insets: 0,1,2,3;\n"
-											+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: black;\n" + "-fx-border-insets: 5;\n"
-									        + "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
-								}
+						}
+						count = 0;
+						for (String l : inst.keySet()) {
+							System.out.println(inst.get(l) + " " + l);
+							count++;
+							instruction = l;
+						}
+						System.out.println(inst.size());
+						window.setScene(playPage);
+						window.setFullScreen(true);
+						publicText.setText(inst.size() + "");
+						publicText2.setText(userID);
+
+						ScrollPane sp = new ScrollPane();
+						VBox box = new VBox();
+						box.setPrefHeight(300);
+						box.setPrefWidth(800);
+						box.setStyle("-fx-background-color: #FFA500;\n" + "-fx-background-insets: 0,1,2,3;\n"
+								+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: white;\n"
+								+ "-fx-border-insets: 5;\n" + "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
+
+											
+						for (int i = 0; i < instBox.size(); ++i) {
+							String current = instBox.get(i);
+							JFXButton ins = new JFXButton(String.valueOf(current));
+							ins.setRipplerFill(Color.rgb(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
+							ins.setStyle(countB(i));
+							box.getChildren().add(ins);
+							ins.setOnAction(d -> {
+								String Msg = null;
+
+								submitList.add(inst.get(ins.getText()));
+								out.println("FEEDBACK " + inst.get(ins.getText()));
 								try {
 									Msg = in.readLine();
-									System.out.println(Msg);
 								} catch (Exception e1) {
 									e1.printStackTrace();
 								}
-							}
+								while (!Msg.equals("END")) {
+									if (Msg.contains("FEEDBACK")) {
+										String msg = Msg.substring(Msg.indexOf(" ") + 1);
+										Label neg = new Label(msg);
+										String family1 = "Helvetica";
+										double size1 = 25;
+										neg.setTextFill(Color.GREEN);
+										neg.setFont(Font.font(family1, FontWeight.BOLD, size1));
+										vbox3.getChildren().add(neg);
+										vbox3.setStyle(
+												"-fx-background-color: red;" + "-fx-background-insets: 0,1,2,3;\n"
+														+ "-fx-background-radius: 3,2,2,2;\n"
+														+ "-fx-border-color: orange;\n" + "-fx-border-insets: 5;\n"
+														+ "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
+									} else if (Msg.contains("PRAISE")) {
+										String msg = Msg.substring(Msg.indexOf(" ") + 1);
+										System.out.println(msg);
+										Label pos = new Label(msg);
+										String family2 = "Helvetica";
+										double size2 = 25;
+										pos.setTextFill(Color.YELLOW);
+										pos.setFont(Font.font(family2, FontWeight.BOLD, size2));
+										vbox3.getChildren().add(pos);
+										vbox3.setStyle(
+												"-fx-background-color: blue;" + "-fx-background-insets: 0,1,2,3;\n"
+														+ "-fx-background-radius: 3,2,2,2;\n"
+														+ "-fx-border-color: black;\n" + "-fx-border-insets: 5;\n"
+														+ "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
+									}
+									try {
+										Msg = in.readLine();
+										System.out.println(Msg);
+									} catch (Exception e1) {
+										e1.printStackTrace();
+									}
+								}
+								JFXButton ans = new JFXButton(String.valueOf(current));
+								ins.setRipplerFill(Color.rgb(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
+								ans.setStyle(buttonLayout);
 
-							Button ans = new Button(String.valueOf(current));
-							ans.setStyle(buttonLayout);
-
-							vbox5.getChildren().add(ans);
-							vbox5.setAlignment(Pos.CENTER_LEFT);
-							// if(inst.keySet())
-							ans.setOnAction(r -> {
-								submitList.remove(inst.get(ans.getText()));
-								vbox5.getChildren().remove(ans);
+								vbox5.getChildren().add(ans);
+								vbox5.setAlignment(Pos.CENTER_LEFT);
+								// if(inst.keySet())
+								ans.setOnAction(r -> {
+									submitList.remove(inst.get(ans.getText()));
+									vbox5.getChildren().remove(ans);
+								});
 							});
-						});
+						}
+
+						sp.setContent(box);
+						sp.setPrefHeight(300);
+						sp.setPrefWidth(800);
+						vbox2.getChildren().add(sp);
+					} else {
+						window.setScene(levelPage);
 					}
+				}
 
-					sp.setContent(box);
-					sp.setPrefHeight(300);
-					sp.setPrefWidth(800);
-					vbox2.getChildren().add(sp);
+				else if (state == -2) {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle(" JESUS ");
+					alert.setHeaderText(null);
+					alert.setContentText("ID doesn't exist");
+					ButtonType buttonTypeOk = new ButtonType("Ok");
+					ButtonType buttonTypeSignup = new ButtonType("Sign Up");
+					alert.getButtonTypes().setAll(buttonTypeOk, buttonTypeSignup);
+					Optional<ButtonType> result = alert.showAndWait();
+					if (result.get() == buttonTypeOk) {
+						alert.close();
+					} else {
+						window.setScene(signupPage);
+					}
+				} else if (state == -3) {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle(" JESUS ");
+					alert.setHeaderText(null);
+					alert.setContentText("Inaccurate Password");
+					ButtonType buttonTypeOk = new ButtonType("Ok");
+					alert.getButtonTypes().setAll(buttonTypeOk);
+					Optional<ButtonType> result = alert.showAndWait();
+					if (result.get() == buttonTypeOk) {
+						alert.close();
+					}
 				} else {
-					window.setScene(levelPage);
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle(" JESUS ");
+					alert.setHeaderText(null);
+					alert.setContentText("Account already logged in");
+					ButtonType buttonTypeOk = new ButtonType("Ok");
+					alert.getButtonTypes().setAll(buttonTypeOk);
+					Optional<ButtonType> result = alert.showAndWait();
+					if (result.get() == buttonTypeOk) {
+						alert.close();
+					}
 				}
-			}
-
-			else if (state == -2) {
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle(" JESUS ");
-				alert.setHeaderText(null);
-				alert.setContentText("ID doesn't exist");
-				ButtonType buttonTypeOk = new ButtonType("Ok");
-				ButtonType buttonTypeSignup = new ButtonType("Sign Up");
-				alert.getButtonTypes().setAll(buttonTypeOk, buttonTypeSignup);
-				Optional<ButtonType> result = alert.showAndWait();
-				if (result.get() == buttonTypeOk) {
-					alert.close();
-				} else {
-					window.setScene(signupPage);
-				}
-			} else if (state == -3) {
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle(" JESUS ");
-				alert.setHeaderText(null);
-				alert.setContentText("Inaccurate Password");
-				ButtonType buttonTypeOk = new ButtonType("Ok");
-				alert.getButtonTypes().setAll(buttonTypeOk);
-				Optional<ButtonType> result = alert.showAndWait();
-				if (result.get() == buttonTypeOk) {
-					alert.close();
-				}
-			} else {
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle(" JESUS ");
-				alert.setHeaderText(null);
-				alert.setContentText("Account already logged in");
-				ButtonType buttonTypeOk = new ButtonType("Ok");
-				alert.getButtonTypes().setAll(buttonTypeOk);
-				Optional<ButtonType> result = alert.showAndWait();
-				if (result.get() == buttonTypeOk) {
-					alert.close();
-				}
-			}
 			}
 		});
 
@@ -552,8 +617,6 @@ public class JESUS_Client extends Application {
 		signupPage = new Scene(pane2, 300, 300);
 
 		// Check Level Page
-		String[] questionName = new String[4];
-		
 		Label wc = new Label("Select the Level");
 		wc.setTextFill(Color.YELLOW);
 		wc.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 46));
@@ -564,7 +627,7 @@ public class JESUS_Client extends Application {
 		show2.setStyle("-fx-text-fill: blue;\n");
 		JFXButton show3 = new JFXButton("Level 3");
 		show3.setStyle("-fx-text-fill: red;\n");
-		
+
 		show1.setPadding(new Insets(10, 10, 10, 10));
 		show2.setPadding(new Insets(10, 10, 10, 10));
 		show3.setPadding(new Insets(10, 10, 10, 10));
@@ -597,31 +660,31 @@ public class JESUS_Client extends Application {
 		// 레벨 선택시 popup창 나타남
 		show1.setOnMouseClicked((e) -> {
 			String inMsg = null;
+			String[] questionName = new String[4];
+			try {
+				in.reset();
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 			out.println("LEVELCHOICE " + 1);
 			try {
 				inMsg = in.readLine();
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
+			int i = 0;
 			while (!inMsg.equals("END")) {
 				String qNO, qContent;
 				qNO = inMsg.substring(0, 1);
 				qContent = inMsg.substring(2);
+				questionName[i ++] = qContent;
 				q.put(qContent, Integer.parseInt(qNO));
 				try {
 					inMsg = in.readLine();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-			}
-
-			int i = 0;
-			for (String k : q.keySet()) {
-				Integer qt = q.get(k);
-				questionName[i] = k;
-
-				System.out.println(k);
-				i++;
 			}
 
 			ObservableList<String> tasks1 = FXCollections.observableArrayList(questionName[0], questionName[1]);
@@ -632,33 +695,42 @@ public class JESUS_Client extends Application {
 
 			popup1.setSource(r1);
 			popup1.show(PopupVPosition.TOP, PopupHPosition.LEFT);
-			
+
 			Label text1 = new Label("ID: " + userID);
 			Label text2 = new Label("Q Number: " + 1);
 			Text text0 = new Text();
 			publicText = text0;
 			publicText2 = text0;
-			text0.setStyle("-fx-font-size: 0.1px;\n");	
+			text0.setStyle("-fx-font-size: 0.1px;\n");
 			text1.setTextFill(Color.BLACK);
 			text1.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 30));
 			text2.setTextFill(Color.BLACK);
 			text2.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 30));
 			vbox1_2.getChildren().addAll(text0, text1, text2);
-			
+
 		});
 
 		show2.setOnMouseClicked((e) -> {
 			String inMsg = null;
+			String[] questionName = new String[4];
+			try {
+				in.reset();
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 			out.println("LEVELCHOICE " + 2);
 			try {
 				inMsg = in.readLine();
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
+			int i = 0;
 			while (!inMsg.equals("END")) {
 				String qNO, qContent;
 				qNO = inMsg.substring(0, 1);
 				qContent = inMsg.substring(2);
+				questionName[i ++] = qContent;
 				q.put(qContent, Integer.parseInt(qNO));
 				try {
 					inMsg = in.readLine();
@@ -666,16 +738,6 @@ public class JESUS_Client extends Application {
 					e1.printStackTrace();
 				}
 			}
-
-			int i = 0;
-			for (String k : q.keySet()) {
-				Integer qt = q.get(k);
-				questionName[i] = k;
-
-				System.out.println(k);
-				i++;
-			}
-
 			ObservableList<String> tasks2 = FXCollections.observableArrayList(questionName[0], questionName[1]);
 			list2.setItems(tasks2);
 
@@ -684,13 +746,13 @@ public class JESUS_Client extends Application {
 
 			popup2.setSource(r2);
 			popup2.show(PopupVPosition.TOP, PopupHPosition.LEFT);
-			
+
 			Label text1 = new Label("ID: " + userID);
 			Label text2 = new Label("Q Number: " + 2);
 			Text text0 = new Text();
 			publicText = text0;
 			publicText2 = text0;
-			text0.setStyle("-fx-font-size: 0.1px;\n");	
+			text0.setStyle("-fx-font-size: 0.1px;\n");
 			text1.setTextFill(Color.BLACK);
 			text1.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 30));
 			text2.setTextFill(Color.BLACK);
@@ -700,16 +762,25 @@ public class JESUS_Client extends Application {
 
 		show3.setOnMouseClicked((e) -> {
 			String inMsg = null;
-			out.println("LEVELCHOICE " + 1);
+			String[] questionName = new String[4];
+			try {
+				in.reset();
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+			out.println("LEVELCHOICE " + 3);
 			try {
 				inMsg = in.readLine();
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
+			int i = 0;
 			while (!inMsg.equals("END")) {
 				String qNO, qContent;
 				qNO = inMsg.substring(0, 1);
 				qContent = inMsg.substring(2);
+				questionName[i ++] = qContent;
 				q.put(qContent, Integer.parseInt(qNO));
 				try {
 					inMsg = in.readLine();
@@ -717,16 +788,6 @@ public class JESUS_Client extends Application {
 					e1.printStackTrace();
 				}
 			}
-
-			int i = 0;
-			for (String k : q.keySet()) {
-				Integer qt = q.get(k);
-				questionName[i] = k;
-
-				System.out.println(k);
-				i++;
-			}
-
 			ObservableList<String> tasks3 = FXCollections.observableArrayList(questionName[0], questionName[1]);
 			list3.setItems(tasks3);
 
@@ -735,13 +796,13 @@ public class JESUS_Client extends Application {
 
 			popup3.setSource(r3);
 			popup3.show(PopupVPosition.TOP, PopupHPosition.LEFT);
-			
+
 			Label text1 = new Label("ID: " + userID);
 			Label text2 = new Label("Q Number: " + 3);
 			Text text0 = new Text();
 			publicText = text0;
 			publicText2 = text0;
-			text0.setStyle("-fx-font-size: 0.1px;\n");	
+			text0.setStyle("-fx-font-size: 0.1px;\n");
 			text1.setTextFill(Color.BLACK);
 			text1.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 30));
 			text2.setTextFill(Color.BLACK);
@@ -754,24 +815,25 @@ public class JESUS_Client extends Application {
 			public void changed(ObservableValue<? extends String> ov, String oldValue, String newValue) {
 				ArrayList<String> instBox = new ArrayList<String>();
 				System.out.println("문제번호 " + q.get(newValue));
+				
 				submitList.add(q.get(newValue));
 				out.println("QCHOICE " + q.get(newValue));
-								
+
 				Image image = new Image(selectImage(q.get(newValue)));
 				ImageView iv1 = new ImageView();
 				iv1.setImage(image);
 				iv1.setFitHeight(100);
 				iv1.setFitWidth(100);
 				vbox4.getChildren().add(iv1);
-				
+
 				Image id = new Image(selectIdImg(q.get(newValue)));
 				ImageView idv = new ImageView();
 				idv.setImage(id);
 				idv.setFitHeight(80);
 				idv.setFitWidth(100);
 				vbox1_1.getChildren().add(idv);
-				
-				Label task = new Label("QUESTION: "+newValue);
+
+				Label task = new Label("QUESTION: " + newValue);
 				task.setTextFill(Color.BLACK);
 				task.setFont(Font.font("Arial", FontWeight.BOLD, 30));
 				vbox4.getChildren().add(task);
@@ -806,25 +868,36 @@ public class JESUS_Client extends Application {
 				window.setFullScreen(true);
 				publicText.setText(inst.size() + "");
 				publicText2.setText(userID);
-				
+
 				ScrollPane sp = new ScrollPane();
 				VBox box = new VBox();
-				box.setPrefHeight(300);
-		        box.setPrefWidth(800); 
-		        box.setStyle("-fx-background-color: #FFA500;\n" + "-fx-background-insets: 0,1,2,3;\n"
+				box.setPrefHeight(600);
+				box.setPrefWidth(800);
+				box.setStyle("-fx-background-color: #FFA500;\n" + "-fx-background-insets: 0,1,2,3;\n"
 						+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: white;\n" + "-fx-border-insets: 5;\n"
-				        + "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
+						+ "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
+
 				
 				for (int i = 0; i < instBox.size(); ++i) {
+					int key = 1;
 					String current = instBox.get(i);
-					Button ins = new Button(String.valueOf(current));
+					JFXButton ins = new JFXButton(String.valueOf(current));
+					ins.setRipplerFill(Color.rgb(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
 					
+		
+					if (current.contains("만약")) {
+						key = 2;
+					}
+					else if (current.contains("반복")) {
+						key = 3;
+					}
+
 					System.out.println(buttonLayout);
-					ins.setStyle(countB(i));
+					ins.setStyle(countB(key));
 					box.getChildren().add(ins);
 					ins.setOnAction(d -> {
 						String inMsg = null;
-
+						int k = 1;
 						submitList.add(inst.get(ins.getText()));
 						out.println("FEEDBACK " + inst.get(ins.getText()));
 						try {
@@ -842,8 +915,9 @@ public class JESUS_Client extends Application {
 								neg.setFont(Font.font(family1, FontWeight.BOLD, size1));
 								vbox3.getChildren().add(neg);
 								vbox3.setStyle("-fx-background-color: red;" + "-fx-background-insets: 0,1,2,3;\n"
-										+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: orange;\n" + "-fx-border-insets: 5;\n"
-								        + "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
+										+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: orange;\n"
+										+ "-fx-border-insets: 5;\n" + "-fx-border-width: 3;\n"
+										+ "-fx-border-style: solid;\n");
 							} else if (inMsg.contains("PRAISE")) {
 								String msg = inMsg.substring(inMsg.indexOf(" ") + 1);
 								System.out.println(msg);
@@ -853,9 +927,10 @@ public class JESUS_Client extends Application {
 								pos.setTextFill(Color.YELLOW);
 								pos.setFont(Font.font(family2, FontWeight.BOLD, size2));
 								vbox3.getChildren().add(pos);
-								vbox3.setStyle("-fx-background-color: blue;"+ "-fx-background-insets: 0,1,2,3;\n"
-										+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: black;\n" + "-fx-border-insets: 5;\n"
-								        + "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
+								vbox3.setStyle("-fx-background-color: blue;" + "-fx-background-insets: 0,1,2,3;\n"
+										+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: black;\n"
+										+ "-fx-border-insets: 5;\n" + "-fx-border-width: 3;\n"
+										+ "-fx-border-style: solid;\n");
 							}
 							try {
 								inMsg = in.readLine();
@@ -864,10 +939,16 @@ public class JESUS_Client extends Application {
 								e1.printStackTrace();
 							}
 						}
-
-						Button ans = new Button(String.valueOf(current));
+						if (current.contains("만약")) {
+							k = 2;
+						}
+						else if (current.contains("반복")) {
+							k = 3;
+						}
+						JFXButton ans = new JFXButton(String.valueOf(current));
+						ans.setRipplerFill(Color.rgb(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
 						ans.setStyle(buttonLayout);
-
+						ans.setStyle(countB(k));
 						vbox5.getChildren().add(ans);
 						vbox5.setAlignment(Pos.CENTER_LEFT);
 						// if(inst.keySet())
@@ -878,12 +959,11 @@ public class JESUS_Client extends Application {
 					});
 				}
 				sp.setContent(box);
-				sp.setPrefHeight(300);
+				sp.setPrefHeight(600);
 				sp.setPrefWidth(800);
 				vbox2.getChildren().add(sp);
 			}
 
-			
 		});
 
 		list2.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -898,15 +978,15 @@ public class JESUS_Client extends Application {
 				iv1.setFitWidth(100);
 				vbox4.getChildren().add(iv1);
 				out.println("QCHOICE " + q.get(newValue));
-				
+
 				Image id = new Image(selectIdImg(q.get(newValue)));
 				ImageView idv = new ImageView();
 				idv.setImage(id);
 				idv.setFitHeight(80);
 				idv.setFitWidth(100);
 				vbox1_1.getChildren().add(idv);
-				
-				Label task = new Label("QUESTION: "+newValue);
+
+				Label task = new Label("QUESTION: " + newValue);
 				task.setTextFill(Color.BLACK);
 				task.setFont(Font.font("Arial", FontWeight.BOLD, 30));
 				vbox4.getChildren().add(task);
@@ -929,6 +1009,7 @@ public class JESUS_Client extends Application {
 						e1.printStackTrace();
 					}
 				}
+				
 				count = 0;
 				for (String l : inst.keySet()) {
 					System.out.println(inst.get(l) + " " + l);
@@ -941,22 +1022,40 @@ public class JESUS_Client extends Application {
 				publicText.setText(inst.size() + "");
 				publicText2.setText(userID);
 				
+				//SCROLL
+
 				ScrollPane sp = new ScrollPane();
 				VBox box = new VBox();
-				box.setPrefHeight(300);
-		        box.setPrefWidth(800); 
-		        box.setStyle("-fx-background-color: #FFA500;\n" + "-fx-background-insets: 0,1,2,3;\n"
+				box.setPrefHeight(600);
+				box.setPrefWidth(600);
+				box.setStyle("-fx-background-color: #FFA500;\n" + "-fx-background-insets: 0,1,2,3;\n"
 						+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: white;\n" + "-fx-border-insets: 5;\n"
-				        + "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
-
+						+ "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
+				//SCROLL BOX
+				//ScrollPane sp2 = new ScrollPane();
+				//sp2.setPrefWidth(800);
+				//sp2.setPrefHeight(400); 
+				
+				//VBox box2 =new VBox();
+				//box2.setPrefWidth(800);
+				//box2.setPrefHeight(400);
 				for (int i = 0; i < instBox.size(); ++i) {
+					int key = 1;
 					String current = instBox.get(i);
-					Button ins = new Button(String.valueOf(current));
+					if (current.contains("만약")) {
+						key = 2;
+					}
+					else if (current.contains("반복")) {
+						key = 3;
+					}
+					JFXButton ins = new JFXButton(String.valueOf(current));
+					ins.setRipplerFill(Color.rgb(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
 					System.out.println(buttonLayout);
-					ins.setStyle(countB(i));
+					ins.setStyle(countB(key));
 					box.getChildren().add(ins);
 					ins.setOnAction(d -> {
 						String inMsg = null;
+						int k = 1;
 						submitList.add(inst.get(ins.getText()));
 						out.println("FEEDBACK " + inst.get(ins.getText()));
 						try {
@@ -973,11 +1072,14 @@ public class JESUS_Client extends Application {
 								double size1 = 25;
 								neg.setTextFill(Color.GREEN);
 								neg.setFont(Font.font(family1, FontWeight.BOLD, size1));
+								box.getChildren().add(neg);
 								vbox3.getChildren().add(neg);
 								vbox3.setStyle("-fx-background-color: red;" + "-fx-background-insets: 0,1,2,3;\n"
-										+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: orange;\n" + "-fx-border-insets: 5;\n"
-								        + "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
-							} else if (inMsg.contains("PRAISE")) {
+										+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: orange;\n"
+										+ "-fx-border-insets: 5;\n" + "-fx-border-width: 3;\n"
+										+ "-fx-border-style: solid;\n");
+								
+								} else if (inMsg.contains("PRAISE")) {
 								String msg = inMsg.substring(inMsg.indexOf(" ") + 1);
 								System.out.println(msg);
 								Label pos = new Label(msg);
@@ -987,8 +1089,9 @@ public class JESUS_Client extends Application {
 								pos.setFont(Font.font(family2, FontWeight.BOLD, size2));
 								vbox3.getChildren().add(pos);
 								vbox3.setStyle("-fx-background-color: blue;" + "-fx-background-insets: 0,1,2,3;\n"
-										+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: black;\n" + "-fx-border-insets: 5;\n"
-								        + "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
+										+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: black;\n"
+										+ "-fx-border-insets: 5;\n" + "-fx-border-width: 3;\n"
+										+ "-fx-border-style: solid;\n");
 							}
 							try {
 								inMsg = in.readLine();
@@ -997,9 +1100,17 @@ public class JESUS_Client extends Application {
 								e1.printStackTrace();
 							}
 						}
-
-						Button ans = new Button(String.valueOf(current));
+						
+						if (current.contains("만약")) {
+							k = 2;
+						}
+						else if (current.contains("반복")) {
+							k = 3;
+						}
+						JFXButton ans = new JFXButton(String.valueOf(current));
+						ans.setRipplerFill(Color.rgb(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
 						ans.setStyle(buttonLayout);
+						ans.setStyle(countB(k));
 
 						vbox5.getChildren().add(ans);
 						vbox5.setAlignment(Pos.CENTER_LEFT);
@@ -1010,9 +1121,11 @@ public class JESUS_Client extends Application {
 						});
 					});
 				}
+				//sp2.setContent(box2);
+				//sp2.setStyle("-fx-background-color: red;");
 				sp.setContent(box);
-				sp.setPrefHeight(300);
-				sp.setPrefWidth(300);
+				sp.setPrefHeight(600);
+				sp.setPrefWidth(600);
 				vbox2.getChildren().add(sp);
 			}
 		});
@@ -1023,22 +1136,22 @@ public class JESUS_Client extends Application {
 				System.out.println("문제번호 " + q.get(newValue));
 				submitList.add(q.get(newValue));
 				out.println("QCHOICE " + q.get(newValue));
-				
+
 				Image image = new Image(selectImage(q.get(newValue)));
 				ImageView iv1 = new ImageView();
 				iv1.setImage(image);
 				iv1.setFitHeight(100);
 				iv1.setFitWidth(100);
 				vbox4.getChildren().add(iv1);
-				
+
 				Image id = new Image(selectIdImg(q.get(newValue)));
 				ImageView idv = new ImageView();
 				idv.setImage(id);
 				idv.setFitHeight(80);
 				idv.setFitWidth(100);
 				vbox1_1.getChildren().add(idv);
-				
-				Label task = new Label("QUESTION: "+newValue);
+
+				Label task = new Label("QUESTION: " + newValue);
 				task.setTextFill(Color.BLACK);
 				task.setFont(Font.font(null, FontWeight.BOLD, 20));
 				vbox4.getChildren().add(task);
@@ -1067,25 +1180,37 @@ public class JESUS_Client extends Application {
 					count++;
 					instruction = l;
 				}
+				
 				System.out.println(inst.size());
 				window.setScene(playPage);
 				window.setFullScreen(true);
 				publicText.setText(inst.size() + "");
 				publicText2.setText(userID);
-				
+
 				ScrollPane sp = new ScrollPane();
 				VBox box = new VBox();
-				box.setPrefHeight(300);
-		        box.setPrefWidth(520); 
+				box.setPrefHeight(600);
+				box.setPrefWidth(600);
 
-				for (int i = 0; i < instBox.size(); ++i) {
+				
+     			for (int i = 0; i < instBox.size(); ++i) {
+					int key = 1;
 					String current = instBox.get(i);
-					Button ins = new Button(String.valueOf(current));
+					if (current.contains("만약")) {
+						key = 2;
+					}
+					else if (current.contains("반복")) {
+						key = 3;
+					}
+
+					JFXButton ins = new JFXButton(String.valueOf(current));
+					ins.setRipplerFill(Color.rgb(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
 					System.out.println(buttonLayout);
-					ins.setStyle(countB(i));
+					ins.setStyle(countB(key));
 					box.getChildren().add(ins);
 					ins.setOnAction(d -> {
 						String inMsg = null;
+						int k = 1;
 						submitList.add(inst.get(ins.getText()));
 						out.println("FEEDBACK " + inst.get(ins.getText()));
 						try {
@@ -1103,10 +1228,7 @@ public class JESUS_Client extends Application {
 								neg.setTextFill(Color.GREEN);
 								neg.setFont(Font.font(family1, FontWeight.BOLD, size1));
 								vbox3.getChildren().add(neg);
-								vbox3.setStyle("-fx-background-color: red;" + "-fx-background-insets: 0,1,2,3;\n"
-										+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: orange;\n" + "-fx-border-insets: 5;\n"
-								        + "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
-							} else if (inMsg.contains("PRAISE")) {
+																							} else if (inMsg.contains("PRAISE")) {
 								String msg = inMsg.substring(inMsg.indexOf(" ") + 1);
 								System.out.println(msg);
 								Label pos = new Label(msg);
@@ -1115,10 +1237,8 @@ public class JESUS_Client extends Application {
 								pos.setTextFill(Color.YELLOW);
 								pos.setFont(Font.font(family2, FontWeight.BOLD, size2));
 								vbox3.getChildren().add(pos);
-								vbox3.setStyle("-fx-background-color: blue;" + "-fx-background-insets: 0,1,2,3;\n"
-										+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: black;\n" + "-fx-border-insets: 5;\n"
-								        + "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
-							}
+								
+																							}
 							try {
 								inMsg = in.readLine();
 								System.out.println(inMsg);
@@ -1126,9 +1246,16 @@ public class JESUS_Client extends Application {
 								e1.printStackTrace();
 							}
 						}
-						Button ans = new Button(String.valueOf(current));
+						if (current.contains("만약")) {
+							k = 2;
+						}
+						else if (current.contains("반복")) {
+							k = 3;
+						}
+						JFXButton ans = new JFXButton(String.valueOf(current));
+						ans.setRipplerFill(Color.rgb(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
 						ans.setStyle(buttonLayout);
-
+						ans.setStyle(countB(k));
 						vbox5.getChildren().add(ans);
 						vbox5.setAlignment(Pos.CENTER_LEFT);
 						// if(inst.keySet())
@@ -1139,28 +1266,25 @@ public class JESUS_Client extends Application {
 					});
 				}
 				sp.setContent(box);
-				sp.setPrefHeight(300);
-				sp.setPrefWidth(300);
+				sp.setPrefHeight(600);
+				sp.setPrefWidth(600);
 				vbox2.getChildren().add(sp);
 			}
 		});
 
-		levelPage = new Scene(main, 700, 750);
+		levelPage = new Scene(main, 750, 700);
 		levelPage.getStylesheets().add(JESUS_Client.class.getResource("jfoenix-components.css").toExternalForm());
 		// levelPage.getStylesheets().add(LoginPage.class.getResource("jfoenix-components.css").toExternalForm());
 
 		// playPage
-		HBox playBox = new HBox();
-
-		VBox leftBox = new VBox();
 
 		vbox1.setPrefHeight(100);
 		vbox1.setPrefWidth(800);
 		vbox1.setPadding(new Insets(50));
 		vbox1.setStyle("-fx-background-color: #f4f68b;\n" + "-fx-background-insets: 0,1,2,3;\n"
 				+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: white;\n" + "-fx-border-insets: 5;\n"
-				        + "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
-		
+				+ "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
+
 		vbox1_1.setPrefHeight(100);
 		vbox1_1.setPrefWidth(200);
 		vbox1_1.setPadding(new Insets(50));
@@ -1172,28 +1296,28 @@ public class JESUS_Client extends Application {
 		vbox1_2.setPadding(new Insets(50));
 		vbox1_2.setStyle("-fx-background-color: #f4f68b;\n" + "-fx-background-insets: 0,1,2,3;\n"
 				+ "-fx-background-radius: 3,2,2,2;\n");
-		
-		vbox1.getChildren().addAll(vbox1_1,vbox1_2);
+
+		vbox1.getChildren().addAll(vbox1_1, vbox1_2);
 		int count = inst.keySet().size();
 		System.out.println(count);
-		
 
 		// text.setFont(Font.font("Helvetica", FontWeight.BOLD, 20));
 
 		// VBox vbox2 = new VBox();
-		vbox2.setPrefHeight(300);
-		vbox2.setPrefWidth(800);
-		vbox2.setPadding(new Insets(50));
+		vbox2.setPrefHeight(400);
+		vbox2.setPrefWidth(600);
+
 		vbox2.setStyle("-fx-background-color: #FFA500;\n" + "-fx-background-insets: 0,1,2,3;\n"
 				+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: white;\n" + "-fx-border-insets: 5;\n"
-		        + "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
-		
+				+ "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
+
 		vbox3.setPrefWidth(800);
 		vbox3.setPrefHeight(300);
-		vbox3.setPadding(new Insets(50));
+		
+		
 		vbox3.setStyle("-fx-background-color: #808080;\n" + "-fx-background-insets: 0,1,2,3;\n"
 				+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: white;\n" + "-fx-border-insets: 5;\n"
-		        + "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
+				+ "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
 
 		VBox rightBox = new VBox();
 		vbox4.setPrefWidth(900);
@@ -1202,7 +1326,7 @@ public class JESUS_Client extends Application {
 		vbox4.setAlignment(Pos.CENTER);
 		vbox4.setStyle("-fx-background-color: #2397ed;\n" + "-fx-background-insets: 0,1,2,3;\n"
 				+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: white;\n" + "-fx-border-insets: 5;\n"
-		        + "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
+				+ "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n");
 
 		// VBox vbox5 = new VBox();
 		vbox5.setPrefWidth(900);
@@ -1211,7 +1335,7 @@ public class JESUS_Client extends Application {
 		vbox5.setAlignment(Pos.CENTER);
 		vbox5.setStyle("-fx-background-color: #5bdc5b;\n" + "-fx-background-insets: 0,1,2,3;\n"
 				+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: white;\n" + "-fx-border-insets: 5;\n"
-		        + "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n" + "fx-border-radius: 20px;\n");
+				+ "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n" + "fx-border-radius: 20px;\n");
 		submit = new Button("SUBMIT");
 		submit.setStyle("-fx-background-radius: 5em;\n" + "-fx-min-width: 120px;\n" + "-fx-min-height: 120px;\n"
 				+ "-fx-max-width: 120px;\n" + "-fx-max-height: 120px;\n" + "-fx-background-color: #7A2458;\n"
@@ -1223,7 +1347,8 @@ public class JESUS_Client extends Application {
 			answer = answer.concat("" + submitList.get(0));
 			for (int i = 1; i < submitList.size(); ++i) {
 				answer = answer.concat(" " + submitList.get(i));
-			} System.out.println(answer);
+			}
+			System.out.println(answer);
 			out.println("CHECKANS " + answer);
 			try {
 				inMsg = in.readLine();
@@ -1245,12 +1370,10 @@ public class JESUS_Client extends Application {
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.get() == buttonTypeOne) {
 					window.setScene(levelPage);
-				}
-				else{
+				} else {
 					alert.close();
 				}
-			}
-			else {
+			} else {
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle(" JESUS ");
 				alert.setHeaderText(null);
@@ -1269,13 +1392,17 @@ public class JESUS_Client extends Application {
 		VBox sub = new VBox();
 		sub.setStyle("-fx-background-color: #5bdc5b;\n" + "-fx-background-insets: 0,1,2,3;\n"
 				+ "-fx-background-radius: 3,2,2,2;\n" + "-fx-border-color: white;\n" + "-fx-border-insets: 5;\n"
-		        + "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n" + "fx-border-radius: 20px;\n" + "-fx-border-left-style: hidden;\n");
+				+ "-fx-border-width: 3;\n" + "-fx-border-style: solid;\n" + "fx-border-radius: 20px;\n"
+				+ "-fx-border-left-style: hidden;\n");
 		sub.getChildren().add(submit);
 		sub.setAlignment(Pos.CENTER);
-		
-	//	leftBox.getChildren().addAll(vbox1, vbox2, vbox3, new Separator(Orientation.VERTICAL));
-	//	playBox.getChildren().addAll(leftBox, rightBox, new Separator(Orientation.HORIZONTAL));
-	//	rightBox.getChildren().addAll(vbox4, vbox5, new Separator(Orientation.VERTICAL));
+
+		// leftBox.getChildren().addAll(vbox1, vbox2, vbox3, new
+		// Separator(Orientation.VERTICAL));
+		// playBox.getChildren().addAll(leftBox, rightBox, new
+		// Separator(Orientation.HORIZONTAL));
+		// rightBox.getChildren().addAll(vbox4, vbox5, new
+		// Separator(Orientation.VERTICAL));
 
 		// System.out.println("버튼 생성" + count);
 		// for (String l : inst.keySet()) {
@@ -1287,25 +1414,25 @@ public class JESUS_Client extends Application {
 		// ans.setOnAction(t -> vbox5.getChildren().remove(ans));
 		// });
 		// }
-		
+
 		ColumnConstraints column1 = new ColumnConstraints();
 		column1.setPercentWidth(35);
 
 		ColumnConstraints column2 = new ColumnConstraints();
 		column2.setPercentWidth(55);
-		
+
 		ColumnConstraints column3 = new ColumnConstraints();
 		column3.setPercentWidth(10);
-	    gp.getColumnConstraints().addAll(column1, column2, column3);
-		    
+		gp.getColumnConstraints().addAll(column1, column2, column3);
+
 		RowConstraints row1 = new RowConstraints();
-	    row1.setPercentHeight(20);
-	    RowConstraints row2 = new RowConstraints();
-	    row2.setPercentHeight(50);
-	    RowConstraints row3 = new RowConstraints();
-	    row3.setPercentHeight(30);
-	    gp.getRowConstraints().addAll(row1,row2,row3);
-		
+		row1.setPercentHeight(20);
+		RowConstraints row2 = new RowConstraints();
+		row2.setPercentHeight(50);
+		RowConstraints row3 = new RowConstraints();
+		row3.setPercentHeight(30);
+		gp.getRowConstraints().addAll(row1, row2, row3);
+
 		gp.add(vbox1, 0, 0, 1, 1);
 		gp.add(vbox2, 0, 1, 1, 1);
 		gp.add(vbox3, 0, 2, 1, 1);
@@ -1313,21 +1440,16 @@ public class JESUS_Client extends Application {
 		gp.add(vbox5, 1, 1, 1, 2);
 		gp.add(sub, 2, 1, 1, 2);
 
-		
-		
-		
 		playPage = new Scene(gp, 1200, 1600);
 		// levelPage.getStylesheets().add(LoginPage.class.getResource("jfoenix-components.css").toExternalForm());
 
 		Scene scene = new Scene(pane, 600, 750, Color.WHITE);
 		scene.getStylesheets().add(LoginPage.class.getResource("jfoenix-components.css").toExternalForm());
 
-
-		Image applicationIcon = new Image("/resources/ic.png");
+		Image applicationIcon = new Image("/NTP/ic.png");
 		window.getIcons().add(applicationIcon);
 		window.setScene(scene);
 		window.show();
 
 	}
-
 }
