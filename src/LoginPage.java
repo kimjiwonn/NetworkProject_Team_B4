@@ -33,7 +33,7 @@ public class LoginPage extends Application {
       });
       pane.getChildren().add(IDField);
       
-      
+      //
       JFXPasswordField passwordField = new JFXPasswordField();
       passwordField.setStyle("-fx-label-float:true;");
       passwordField.setPromptText("Password");
